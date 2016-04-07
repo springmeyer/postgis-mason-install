@@ -5,17 +5,25 @@ how to easily install postgis into your github repo. Can be used for
 both continuous integrations (installs on travis/circle.ci) and for
 local or production development.
 
-## Depends
-
- - mason loaded as git submodule:
-   - `git submodule add https://github.com/mapbox/mason.git mason`
+This is a way to install and run postgis from binaries that is exactly the same on mac and linux.
 
 ## Usage
 
-This is a way to install and run postgis from binaries that is exactly the same on mac and linux.
+It is as simple as installing mason:
+
 
 ```bash
+git clone https://github.com/mapbox/mason.git mason
 export MASON_DIR=mason
-./mason/mason install postgis 2.2.2
-./local-install.sh
 ```
+
+Then installing postgis with mason:
+
+```bash
+./mason/mason install postgis 2.2.2
+```
+
+For advanced details on how to fully setup and use this postgis install see:
+
+   - [setup.sh](./setup.sh)
+   - [install.sh](./install.sh)
