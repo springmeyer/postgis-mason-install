@@ -17,7 +17,7 @@ git clone https://github.com/mapbox/mason.git mason
 export MASON_DIR=mason
 ```
 
-Then installing postgis with mason:
+Then install postgis with mason:
 
 ```bash
 ./mason/mason install postgis 2.2.2
