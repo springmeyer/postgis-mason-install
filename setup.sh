@@ -6,6 +6,9 @@ set -o pipefail
 # pull mason via submodule
 git submodule update --init
 
+# enable mason as this local path
+export MASON_DIR=$(pwd)/mason
+
 # setup config
 echo 'export CURRENT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"' > mason-config.env
 echo 'export PGDATA=${CURRENT_DIR}/local-postgres' >> mason-config.env
