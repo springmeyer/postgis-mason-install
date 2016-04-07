@@ -1,0 +1,22 @@
+language: generic
+
+addons:
+  apt:
+    sources:
+     - ubuntu-toolchain-r-test
+    packages:
+     - libstdc++6 # upgrade libstdc++ on linux to support C++11
+
+matrix:
+  include:
+     - os: osx
+       osx_image: xcode7.3
+       compiler: clang
+     - os: linux
+       sudo: false
+
+install:
+ - git submodule update --init
+
+script:
+ - ./local-install.sh
