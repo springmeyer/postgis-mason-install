@@ -16,7 +16,8 @@ matrix:
        sudo: false
 
 install:
- - git submodule update --init
+ - ./install.sh
 
 script:
- - ./local-install.sh
+ - ./install.sh
+ - ./stop.sh
