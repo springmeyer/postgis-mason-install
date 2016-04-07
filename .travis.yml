@@ -11,13 +11,10 @@ matrix:
   include:
      - os: osx
        osx_image: xcode7.3
-       compiler: clang
      - os: linux
        sudo: false
 
-install:
- - ./install.sh
-
 script:
+ - ./setup.sh
  - ./install.sh
  - ./stop.sh
