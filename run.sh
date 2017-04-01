@@ -11,20 +11,6 @@ fi
 # do each time you use the local postgis:
 source mason-config.env
 
-# do once: install stuff
-./mason/mason install postgis 2.2.2
-./mason/mason link postgis 2.2.2
-
-# do once: create directories to hold postgres data
-echo "Creating pghost: ${PGHOST} and temp dir: ${PGTEMP_DIR}"
-mkdir ${PGHOST}
-mkdir ${PGTEMP_DIR}
-
-# do once: initialize local db cluster
-echo "Initializing database cluser at ${PGDATA}"
-./mason_packages/.link/bin/initdb
-sleep 2
-
 # do each time you use this local postgis:
 # start server and background (NOTE: if running interactively hit return to fully background and get your prompt back)
 ./mason_packages/.link/bin/postgres -k $PGHOST > postgres.log &
@@ -36,10 +22,6 @@ sleep 2
 
 # add plpython support if you need
 ./mason_packages/.link/bin/psql postgres -c "CREATE PROCEDURAL LANGUAGE 'plpythonu' HANDLER plpython_call_handler;"
-
-# temp debug
-ldd ./mason_packages/linux-x86_64/postgis/2.2.2/lib/rtpostgis-2.2.so || true
-readelf -d ./mason_packages/linux-x86_64/postgis/2.2.2/lib/rtpostgis-2.2.so || true
 
 # create postgis enabled db
 ./mason_packages/.link/bin/createdb template_postgis -T postgres

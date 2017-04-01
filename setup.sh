@@ -3,11 +3,18 @@
 set -eu
 set -o pipefail
 
-# pull mason via submodule
-git submodule update --init
+GDAL_VERSION="2.1.3"
+POSTGIS_VERSION="2.2.2"
+MASON_VERSION="0.9.0"
 
-# enable mason as this local path
-export MASON_DIR=$(pwd)/mason
+mkdir -p ./mason
+curl -sSfL https://github.com/mapbox/mason/archive/v${MASON_VERSION}.tar.gz | tar --gunzip --extract --strip-components=1 --exclude="*md" --exclude="test*" --directory=./mason
+
+# do once: install stuff
+./mason/mason install libgdal ${GDAL_VERSION}
+./mason/mason install postgis ${POSTGIS_VERSION}
+./mason/mason link postgis ${POSTGIS_VERSION}
+
 
 # setup config
 echo 'export CURRENT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"' > mason-config.env
@@ -20,8 +27,7 @@ echo 'export PATH=${CURRENT_DIR}/mason_packages/.link/bin/:${PATH}' >> mason-con
 echo 'export MASON_DIR=$(pwd)/mason' >> mason-config.env
 
 echo "installing gdal, so postgis can access GDAL_DATA"
-./mason/mason install gdal 2.0.2
-GDAL_DATA_VALUE=$(./mason/mason prefix gdal 2.0.2)/share/gdal/
+GDAL_DATA_VALUE=$(./mason/mason prefix gdal ${GDAL_VERSION})/share/gdal/
 echo "export GDAL_DATA=${GDAL_DATA_VALUE}" >> mason-config.env
 
 echo "generated mason-config.env"
