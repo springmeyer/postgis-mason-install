@@ -4,11 +4,12 @@ set -eu
 set -o pipefail
 
 GDAL_VERSION="2.1.3"
-POSTGIS_VERSION="2.3.2"
-MASON_VERSION="0.9.0"
+POSTGIS_VERSION="2.3.2-1"
+# https://github.com/mapbox/mason/pull/404
+MASON_VERSION="b0c4310"
 
 mkdir -p ./mason
-curl -sSfL https://github.com/mapbox/mason/archive/v${MASON_VERSION}.tar.gz | tar --gunzip --extract --strip-components=1 --exclude="*md" --exclude="test*" --directory=./mason
+curl -sSfL https://github.com/mapbox/mason/archive/${MASON_VERSION}.tar.gz | tar --gunzip --extract --strip-components=1 --exclude="*md" --exclude="test*" --directory=./mason
 
 # do once: install stuff
 ./mason/mason install libgdal ${GDAL_VERSION}

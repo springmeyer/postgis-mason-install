@@ -27,7 +27,9 @@ sleep 2
 ./mason_packages/.link/bin/createdb template_postgis -T postgres
 ./mason_packages/.link/bin/psql template_postgis -c "CREATE EXTENSION postgis;"
 ./mason_packages/.link/bin/psql template_postgis -c "SELECT PostGIS_Full_Version();"
-./mason_packages/.link/bin/psql template_postgis -c "CREATE EXTENSION hstore"
+./mason_packages/.link/bin/psql template_postgis -c "CREATE EXTENSION hstore;"
+./mason_packages/.link/bin/psql template_postgis -c "CREATE EXTENSION fuzzystrmatch;"
+./mason_packages/.link/bin/psql template_postgis -c "CREATE EXTENSION unaccent;"
 
 echo "Fully bootstrapped template_postgis and server is now running"
 echo "To stop server do:"
