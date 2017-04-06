@@ -27,7 +27,11 @@ echo 'export PATH=${CURRENT_DIR}/mason_packages/.link/bin/:${PATH}' >> mason-con
 echo 'export MASON_DIR=$(pwd)/mason' >> mason-config.env
 
 echo "installing gdal, so postgis can access GDAL_DATA"
-GDAL_DATA_VALUE=$(./mason/mason prefix gdal ${GDAL_VERSION})/share/gdal/
+GDAL_DATA_VALUE=$(./mason/mason prefix libgdal ${GDAL_VERSION})/share/gdal/
+if [[ ! -d ${GDAL_DATA_VALUE} ]]; then
+    echo "${GDAL_DATA_VALUE} not found"
+    exit 1
+fi
 echo "export GDAL_DATA=${GDAL_DATA_VALUE}" >> mason-config.env
 
 echo "generated mason-config.env"
