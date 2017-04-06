@@ -4,7 +4,7 @@ set -eu
 set -o pipefail
 
 GDAL_VERSION="2.1.3"
-POSTGIS_VERSION="2.2.2"
+POSTGIS_VERSION="2.3.2"
 MASON_VERSION="0.9.0"
 
 mkdir -p ./mason
