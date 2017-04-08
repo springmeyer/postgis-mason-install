@@ -25,11 +25,17 @@ sleep 2
 
 # create postgis enabled db
 ./mason_packages/.link/bin/createdb template_postgis -T postgres
+echo "Adding postgis extension"
 ./mason_packages/.link/bin/psql template_postgis -c "CREATE EXTENSION postgis;"
 ./mason_packages/.link/bin/psql template_postgis -c "SELECT PostGIS_Full_Version();"
+echo "Adding hstore extension"
 ./mason_packages/.link/bin/psql template_postgis -c "CREATE EXTENSION hstore;"
+echo "Adding fuzzystrmatch extension"
 ./mason_packages/.link/bin/psql template_postgis -c "CREATE EXTENSION fuzzystrmatch;"
+echo "Adding unaccent extension"
 ./mason_packages/.link/bin/psql template_postgis -c "CREATE EXTENSION unaccent;"
+echo "Adding postgis_sfcgal extension"
+./mason_packages/.link/bin/psql template_postgis -c "CREATE EXTENSION postgis_sfcgal;"
 
 echo "Fully bootstrapped template_postgis and server is now running"
 echo "To stop server do:"
