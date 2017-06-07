@@ -19,4 +19,8 @@ script:
  - ./initialize.sh
  - ./run.sh
  - ./stop.sh
+ # should be able to cleanup all data and re-initialize and run again cleanly
  - ./cleanup.sh
+ - ./initialize.sh
+ - ./run.sh
+ - ./stop.sh

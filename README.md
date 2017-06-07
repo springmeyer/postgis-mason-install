@@ -1,9 +1,8 @@
-Install postgres/postgis locally with mason
+Install postgres/postgis/gdal locally with mason
 
 [![Build Status](https://travis-ci.org/springmeyer/postgis-mason-install.svg?branch=master)](https://travis-ci.org/springmeyer/postgis-mason-install)
 
-This is a sample repo designed to be used as a starting point for
-how to easily install postgis via mason.
+This is a sample repo designed to be used as a starting point for how to easily install postgis via mason.
 
 ## Supports
 
@@ -14,26 +13,16 @@ how to easily install postgis via mason.
 
 ## Usage
 
-First install mason: https://github.com/mapbox/mason/#installation
+Overall the flow is:
 
-```sh
-mkdir ./mason
-curl -sSfL https://github.com/mapbox/mason/archive/v0.8.0.tar.gz | tar --gunzip --extract --strip-components=1 --exclude="*md" --exclude="test*" --directory=./mason
-```
+ - Install Mason locally
+ - Install postgis and gdal locally with mason
+ - Create a `mason-config.env` to source key settings for your local database setup
+ - Initialize the database
+ - Start postgres
+ - Load extensions
+ - All done: postgres/postgis is ready to use
 
-Then install postgis with mason:
+Sample scripts in this repo can walk you through the exact steps and are a starting point for scripting this in an automated way. See the  `test-all.sh` as a starting point.
 
-```bash
-./mason/mason install postgis 2.3.2
-```
-
-For fully automated advanced setup you can run the sample scripts:
-
-```bash
-./setup.sh && ./install.sh
-```
-
-You should understand what these scripts are doing, and plan to customize them. Read the code at:
-
-   - [setup.sh](./setup.sh)
-   - [install.sh](./install.sh)
+You should understand what these scripts are doing, and plan to customize them.
