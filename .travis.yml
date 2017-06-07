@@ -19,3 +19,4 @@ script:
  - ./initialize.sh
  - ./run.sh
  - ./stop.sh
+ - ./cleanup.sh
