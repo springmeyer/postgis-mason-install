@@ -11,6 +11,11 @@ This is a sample repo designed to be used as a starting point for how to easily 
  - OS X
  - Linux
 
+A bonus is that this setup:
+
+- Installs everything locally. There are not global interactions or dependencies. Everything is isolated to the folder you install into.
+- This setup can be used to run multiple postgres servers on one machine with unique ports. Not that you really want to do that in production, but it can be useful for testing and "sandboxing" postgres per project.
+
 ## Usage
 
 Overall the flow is:
